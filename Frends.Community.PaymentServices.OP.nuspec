@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Frends.Community.PaymentServices.OP</id>
-    <version>1.0.0</version>
-    <title>FRENDS Payment Servvices for OP bank</title>
+    <version>1.0.1</version>
+    <title>FRENDS Payment Services for OP bank</title>
     <authors>HiQ Finland</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>FRENDS Payment Services for OP bank</description>

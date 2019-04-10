@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -8,8 +9,8 @@ using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+using Newtonsoft.Json.Linq;
 using Frends.Community.PaymentServices.OP.Helpers;
-using FileInfo = Frends.Community.PaymentServices.OP.Definitions.FileInfo;
 using Environment = Frends.Community.PaymentServices.OP.Helpers.Enums.Environment;
 using Status = Frends.Community.PaymentServices.OP.Helpers.Enums.Status;
 
@@ -407,29 +408,70 @@ namespace Frends.Community.PaymentServices.OP.Services
             return GetContentFromBase64(content, compressed, fileEncoding);
         }
 
-        public static List<FileInfo> GetFileListResultFromResponseXml(string applicationResponseXml)
+        // Converts the XML response into a JToken
+        public static JToken GetFileListResultFromResponseXml(string applicationResponseXml)
         {
             var document = new XmlDocument();
             document.LoadXml(applicationResponseXml);
 
-            var files = new List<FileInfo>();
+            // Only the FileDescriptor element is of interest. The rest is metadata.
+            var nodeList = document.GetElementsByTagName("FileDescriptor").Cast<XmlNode>().ToList();
 
-            foreach (var fileDescription in document.GetElementsByTagName("FileDescriptor").Cast<XmlNode>().ToList())
+            using (var writer = new JTokenWriter())
             {
-                files.Add(fileDescription.GetFileInfo());
-            }
+                writer.Formatting = Newtonsoft.Json.Formatting.Indented;
+                writer.Culture = CultureInfo.InvariantCulture;
 
-            return files;
+                writer.WriteStartArray();
+
+                foreach (var node in nodeList)
+                {
+                    writer.WriteOPFileInfo(node);
+                }
+
+                writer.WriteEndArray();
+
+                return writer.Token;
+            }
         }
 
-        public static FileInfo GetFileInfoFromResponseXml(string applicationResponseXml)
+        public static JToken GetFileInfoFromResponseXml(string applicationResponseXml)
         {
             var document = new XmlDocument();
             document.LoadXml(applicationResponseXml);
 
+            // Only the FileDescriptor element is of interest. The rest is metadata.
             var fileDescription = document.GetElementsByTagName("FileDescriptor").Cast<XmlNode>().FirstOrDefault();
 
-            return fileDescription?.GetFileInfo();
+            using (var writer = new JTokenWriter())
+            {
+                writer.Formatting = Newtonsoft.Json.Formatting.Indented;
+                writer.Culture = CultureInfo.InvariantCulture;
+
+                writer.WriteOPFileInfo(fileDescription);
+
+                return writer.Token;
+            }
+        }
+
+        // This transforms file descriptions from XML format to JSON
+        private static void WriteOPFileInfo(this JTokenWriter writer, XmlNode node)
+        {
+            var children = node.ChildNodes.Cast<XmlNode>().ToList();
+            writer.WriteStartObject();
+            writer.WritePropertyName("FileReference");
+            writer.WriteValue(children.FirstOrDefault(n => n.Name == "FileReference")?.InnerText);
+            writer.WritePropertyName("TargetId");
+            writer.WriteValue(children.FirstOrDefault(n => n.Name == "TargetId")?.InnerText);
+            writer.WritePropertyName("ParentFileReference");
+            writer.WriteValue(children.FirstOrDefault(n => n.Name == "ParentFileReference")?.InnerText);
+            writer.WritePropertyName("FileType");
+            writer.WriteValue(children.FirstOrDefault(n => n.Name == "FileType")?.InnerText);
+            writer.WritePropertyName("FileTimestamp");
+            writer.WriteValue(children.FirstOrDefault(n => n.Name == "FileTimestamp")?.InnerText);
+            writer.WritePropertyName("Status");
+            writer.WriteValue(children.FirstOrDefault(n => n.Name == "Status")?.InnerText);
+            writer.WriteEndObject();
         }
 
         public static string GetErrorMessage(string applicationResponseXml)
@@ -500,6 +542,20 @@ namespace Frends.Community.PaymentServices.OP.Services
             var soapRequestDocument = GetXmlDocument(result.ToString());
 
             return soapRequestDocument;
+        }
+
+        //If input cannot be parsed to DateTime, the value should be null so that it is not used when building the SOAP messages.
+        public static DateTime? ResolveDate(this string input)
+        {
+            DateTime parsedInput;
+            if (DateTime.TryParse(input, out parsedInput))
+            {
+                return parsedInput;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

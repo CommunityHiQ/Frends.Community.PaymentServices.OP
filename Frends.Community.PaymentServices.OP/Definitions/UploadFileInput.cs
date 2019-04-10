@@ -9,7 +9,8 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// Url of the web service (e.g. "https://wsk.asiakastesti.op.fi/services/CorporateFileService")
         /// </summary>
         [Required]
-        [DefaultValue("\"\"")]
+        [DisplayFormat(DataFormatString = "Text")]
+        [DefaultValue("https://wsk.asiakastesti.op.fi/services/CorporateFileService")]
         public string Url { get; set; }
 
         /// <summary>
@@ -17,6 +18,7 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// An Exception is thrown if a certificate is not found or it has already expired.
         /// </summary>
         [Required]
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("")]
         public string CertificateIssuedBy { get; set; }
 
@@ -24,6 +26,7 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// Environment to be used for the web service. Valid values are "TEST" or "PRODUCTION". Url needs to match with this option.
         /// </summary>
         [Required]
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"TEST\"")]
         public string Environment { get; set; }
 
@@ -31,6 +34,7 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// Customer Id number. The certificate needs to be assigned to the same customer id (e.g. "1234567890")
         /// </summary>
         [Required]
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"\"")]
         public string CustomerId { get; set; }
 
@@ -45,6 +49,7 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// File input
         /// </summary>
         [Required]
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"\"")]
         public string FileInput { get; set; }
 
@@ -52,12 +57,14 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// File type to upload (e.g. "pain.001.001.02")
         /// </summary>
         [Required]
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"\"")]
         public string FileType { get; set; }
 
         /// <summary>
         /// Destination file encoding, if empty UTF8 will be used
         /// </summary>
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"utf-8\"")]
         public string FileEncoding { get; set; }
 

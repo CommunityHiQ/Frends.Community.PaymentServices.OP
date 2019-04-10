@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using Newtonsoft.Json.Linq;
 using Frends.Community.PaymentServices.OP.Definitions;
 using Frends.Community.PaymentServices.OP.Helpers;
 using Frends.Community.PaymentServices.OP.Services;
@@ -20,14 +21,11 @@ namespace Frends.Community.PaymentServices.OP
         /// Files can be filtered with different parameters: FileType, StartDate, EndDate or Status.
         /// In case of an error an exception is thrown.
         /// </summary>
-        /// <returns>Returns a list of FileInfo objects</returns>
-        public static FileListOutput DownloadFileList(FileListInput input, CancellationToken cancellationToken)
+        /// <returns>JToken array. Properties: FileReference, TargetId, ParentFileReference, FileType, FileTimestamp, Status</returns>
+        public static JToken DownloadFileList(FileListInput input, CancellationToken cancellationToken)
         {
-            int requestId = input.RequestId;
-            int connectionTimeoutSeconds = input.ConnectionTimeOutSeconds;
             string customerId = input.CustomerId;
             string environment = input.Environment;
-            string fileType = input.FileType;
             string status = input.Status;
             string url = input.Url;
 
@@ -49,15 +47,15 @@ namespace Frends.Community.PaymentServices.OP
 
             var env = (Environment)Enum.Parse(typeof(Environment), environment);
             var fileStatus = string.IsNullOrEmpty(status) ? Status.ALL : (Status)Enum.Parse(typeof(Status), status);
-            var startDateParam = (DateTime?)input.StartDate;
-            var endDateParam = (DateTime?)input.EndDate;
+            var startDateParam = input.StartDate.ResolveDate();
+            var endDateParam = input.EndDate.ResolveDate();
 
-            var message = MessageService.GetDownloadFileListMessage(cert, customerId, fileType, startDateParam, endDateParam, fileStatus, env, input.RequestId);
-            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, connectionTimeoutSeconds, cancellationToken);
+            var message = MessageService.GetDownloadFileListMessage(cert, customerId, input.FileType, startDateParam, endDateParam, fileStatus, env, input.RequestId);
+            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
             string resultXml = result.Result.Body;
             var applicationResponse = CheckResultForErrorsAndReturnApplicationResult(resultXml);
 
-            return new FileListOutput { FileList = Helper.GetFileListResultFromResponseXml(applicationResponse) };
+            return Helper.GetFileListResultFromResponseXml(applicationResponse);
         }
 
         /// <summary>
@@ -66,11 +64,9 @@ namespace Frends.Community.PaymentServices.OP
         /// File content is compressed by GZIP.
         /// In case of an error an exception is thrown.
         /// </summary>
-        /// <returns>Returns a FileInfo object of the uploaded file</returns>
-        public static UploadFileOutput UploadFile(UploadFileInput input, CancellationToken cancellationToken)
+        /// <returns>JToken. Properties: FileReference, TargetId, ParentFileReference, FileType, FileTimestamp, Status</returns>
+        public static JToken UploadFile(UploadFileInput input, CancellationToken cancellationToken)
         {
-            int requestId = input.RequestId;
-            int connectionTimeoutSeconds = input.ConnectionTimeOutSeconds;
             string customerId = input.CustomerId;
             string environment = input.Environment;
             string fileInput = input.FileInput;
@@ -89,15 +85,15 @@ namespace Frends.Community.PaymentServices.OP
             Validators.ValidateParameters(input.Url, cert, environment, stringParameters);
 
             var env = (Environment)Enum.Parse(typeof(Environment), environment);
-            //var cert = (X509Certificate2)certificate;
+            
             var encoding = string.IsNullOrEmpty(input.FileEncoding) ? Encoding.UTF8 : Encoding.GetEncoding(input.FileEncoding);
 
-            var message = MessageService.GetUploadFileMessage(cert, customerId, env, requestId, fileInput, fileType, encoding);
-            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, connectionTimeoutSeconds, cancellationToken);
+            var message = MessageService.GetUploadFileMessage(cert, customerId, env, input.RequestId, fileInput, fileType, encoding);
+            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
             string resultXml = result.Result.Body;
             var applicationResponse = CheckResultForErrorsAndReturnApplicationResult(resultXml);
 
-            return new UploadFileOutput { FileInfo = Helper.GetFileInfoFromResponseXml(applicationResponse) };
+            return Helper.GetFileInfoFromResponseXml(applicationResponse);
         }
 
         /// <summary>
@@ -107,8 +103,6 @@ namespace Frends.Community.PaymentServices.OP
         /// <returns>Returns an empty string</returns>
         public static DeleteFileOutput DeleteFile(DeleteFileInput input, CancellationToken cancellationToken)
         {
-            int requestId = input.RequestId;
-            int connectionTimeoutSeconds = input.ConnectionTimeOutSeconds;
             string customerId = input.CustomerId;
             string environment = input.Environment;
             string fileReference = input.FileReference;
@@ -126,8 +120,8 @@ namespace Frends.Community.PaymentServices.OP
 
             var env = (Environment)Enum.Parse(typeof(Environment), environment);
             //var cert = (X509Certificate2)certificate;
-            var message = MessageService.GetDeleteFileMessage(cert, customerId, env, requestId, fileReference);
-            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, connectionTimeoutSeconds, cancellationToken);
+            var message = MessageService.GetDeleteFileMessage(cert, customerId, env, input.RequestId, fileReference);
+            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
             var resultXml = result.Result.Body;
             return new DeleteFileOutput { ApplicationResult = CheckResultForErrorsAndReturnApplicationResult(resultXml) };
         }
@@ -139,8 +133,6 @@ namespace Frends.Community.PaymentServices.OP
         /// <returns>Returns the downloaded file content</returns>
         public static DownLoadFileOutput DownloadFile(DownloadFileInput input, CancellationToken cancellationToken)
         {
-            int requestId = input.RequestId;
-            int connectionTimeoutSeconds = input.ConnectionTimeOutSeconds;
             string customerId = input.CustomerId;
             string environment = input.Environment;
             string fileEncoding = input.FileEncoding;
@@ -161,8 +153,8 @@ namespace Frends.Community.PaymentServices.OP
             //var cert = (X509Certificate2)certificate;
             var encoding = string.IsNullOrEmpty(fileEncoding) ? Encoding.UTF8 : Encoding.GetEncoding(fileEncoding);
 
-            var message = MessageService.GetDownloadFileMessage(cert, customerId, env, requestId, fileReference);
-            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, connectionTimeoutSeconds, cancellationToken);
+            var message = MessageService.GetDownloadFileMessage(cert, customerId, env, input.RequestId, fileReference);
+            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
             var resultXml = result.Result.Body;
             var applicationResponse = CheckResultForErrorsAndReturnApplicationResult(resultXml);
 

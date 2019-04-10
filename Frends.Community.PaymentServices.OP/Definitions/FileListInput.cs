@@ -9,7 +9,8 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// Url of the web service (e.g. "https://wsk.asiakastesti.op.fi/services/CorporateFileService")
         /// </summary>
         [Required]
-        [DefaultValue("\"\"")]
+        [DisplayFormat(DataFormatString = "Text")]
+        [DefaultValue("https://wsk.asiakastesti.op.fi/services/CorporateFileService")]
         public string Url { get; set; }
 
         /// <summary>
@@ -17,6 +18,7 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// An Exception is thrown if a certificate is not found or it has already expired.
         /// </summary>
         [Required]
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("")]
         public string CertificateIssuedBy { get; set; }
 
@@ -24,6 +26,7 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// Environment to be used for the web service. Valid values are "TEST" or "PRODUCTION". Url needs to match with this option.
         /// </summary>
         [Required]
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"TEST\"")]
         public string Environment { get; set; }
 
@@ -31,6 +34,7 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// Customer Id number. The certificate needs to be assigned to the same customer id (e.g. "1234567890")
         /// </summary>
         [Required]
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"\"")]
         public string CustomerId { get; set; }
 
@@ -44,20 +48,25 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// <summary>
         /// Optional parameter FileType can be used to filter filelist. Files with specific FileType will be returned (e.g. "pain.001.001.02").
         /// </summary>
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"\"")]
         public string FileType { get; set; }
 
         /// <summary>
-        /// Optional parameter StartDate can be used to filter filelist. Files created after this will be returned (inclusive). If this value is null no filter is applied.
+        /// Optional parameter StartDate can be used to filter filelist. Files created after this will be returned (inclusive).
+        /// If this value is null, or unparseable to a DateTime object, no filter is applied.
         /// </summary>
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("")]
-        public object StartDate { get; set; }
+        public string StartDate { get; set; }
 
         /// <summary>
-        /// Optional parameter EndDate can be used to filter filelist. Files created before this will be returned (inclusive). If this value is null no filter is applied.
+        /// Optional parameter EndDate can be used to filter filelist. Files created before this will be returned (inclusive).
+        /// If this value is null no filter is applied, or unparseable to a DateTime object, no filter is applied.
         /// </summary>
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("")]
-        public object EndDate { get; set; }
+        public string EndDate { get; set; }
 
         /// <summary>
         /// Optional parameter Status can be used to filter filelist.
@@ -65,6 +74,7 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// Valid values for files sent to hte bank by the customer are "NEW" or "DLD" (NEW = files not downloaded yet. DLD = files already downloaded).
         /// If no parameter is given or if the status is "ALL", all files will be listed.
         /// </summary>
+        [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"ALL\"")]
         public string Status { get; set; }
 

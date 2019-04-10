@@ -5,3 +5,6 @@ C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServi
 C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Release\Frends.Community.PaymentServices.OP.dll
 C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Release\Frends.Community.PaymentServices.OP.pdb
 C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Release\Frends.Community.PaymentServices.OP.xml
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Release\Newtonsoft.Json.dll
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Release\Newtonsoft.Json.xml
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Release\Frends.Community.PaymentServices.OP.csproj.CopyComplete

@@ -160,12 +160,14 @@
         </member>
         <member name="P:Frends.Community.PaymentServices.OP.Definitions.FileListInput.StartDate">
             <summary>
-            Optional parameter StartDate can be used to filter filelist. Files created after this will be returned (inclusive). If this value is null no filter is applied.
+            Optional parameter StartDate can be used to filter filelist. Files created after this will be returned (inclusive).
+            If this value is null, or unparseable to a DateTime object, no filter is applied.
             </summary>
         </member>
         <member name="P:Frends.Community.PaymentServices.OP.Definitions.FileListInput.EndDate">
             <summary>
-            Optional parameter EndDate can be used to filter filelist. Files created before this will be returned (inclusive). If this value is null no filter is applied.
+            Optional parameter EndDate can be used to filter filelist. Files created before this will be returned (inclusive).
+            If this value is null no filter is applied, or unparseable to a DateTime object, no filter is applied.
             </summary>
         </member>
         <member name="P:Frends.Community.PaymentServices.OP.Definitions.FileListInput.Status">
@@ -187,7 +189,7 @@
             Files can be filtered with different parameters: FileType, StartDate, EndDate or Status.
             In case of an error an exception is thrown.
             </summary>
-            <returns>Returns a list of FileInfo objects</returns>
+            <returns>JToken array. Properties: FileReference, TargetId, ParentFileReference, FileType, FileTimestamp, Status</returns>
         </member>
         <member name="M:Frends.Community.PaymentServices.OP.WebServices.UploadFile(Frends.Community.PaymentServices.OP.Definitions.UploadFileInput,System.Threading.CancellationToken)">
             <summary>
@@ -196,7 +198,7 @@
             File content is compressed by GZIP.
             In case of an error an exception is thrown.
             </summary>
-            <returns>Returns a FileInfo object of the uploaded file</returns>
+            <returns>JToken. Properties: FileReference, TargetId, ParentFileReference, FileType, FileTimestamp, Status</returns>
         </member>
         <member name="M:Frends.Community.PaymentServices.OP.WebServices.DeleteFile(Frends.Community.PaymentServices.OP.Definitions.DeleteFileInput,System.Threading.CancellationToken)">
             <summary>
