@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{037BAB39-7AC0-456B-8553-833994FC481A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Frends.Community.PaymentServices.OP</RootNamespace>
+    <AssemblyName>Frends.Community.PaymentServices.OP</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Frends.Community.PaymentServices.OP.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Frends.Community.PaymentServices.OP.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Definitions\DeleteFileInput.cs" />
+    <Compile Include="Definitions\DeleteFileOutput.cs" />
+    <Compile Include="Definitions\DownLoadFileInput.cs" />
+    <Compile Include="Definitions\DownLoadFileOutput.cs" />
+    <Compile Include="Definitions\Header.cs" />
+    <Compile Include="Definitions\HttpResponse.cs" />
+    <Compile Include="Definitions\FileListOutput.cs" />
+    <Compile Include="Definitions\UploadFileInput.cs" />
+    <Compile Include="Definitions\UploadFileOutput.cs" />
+    <Compile Include="Definitions\WebServiceSettings.cs" />
+    <Compile Include="Helpers\Enums.cs" />
+    <Compile Include="Definitions\FileInfo.cs" />
+    <Compile Include="Definitions\FileListInput.cs" />
+    <Compile Include="Helpers\SignedXmlWithId.cs" />
+    <Compile Include="Helpers\Validators.cs" />
+    <Compile Include="Helpers\XmlNodeExtensions.cs" />
+    <Compile Include="PaymentWebServices.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CertificateService.cs" />
+    <Compile Include="Services\Helper.cs" />
+    <Compile Include="Services\MessageService.cs" />
+    <Compile Include="Services\WebService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

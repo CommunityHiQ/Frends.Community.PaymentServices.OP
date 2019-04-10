@@ -1,0 +1,7 @@
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Release\Frends.Community.PaymentServices.OP.dll
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Release\Frends.Community.PaymentServices.OP.pdb
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Release\Frends.Community.PaymentServices.OP.csprojAssemblyReference.cache
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Release\Frends.Community.PaymentServices.OP.csproj.CoreCompileInputs.cache
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Release\Frends.Community.PaymentServices.OP.dll
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Release\Frends.Community.PaymentServices.OP.pdb
+C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Release\Frends.Community.PaymentServices.OP.xml

@@ -1,0 +1,16 @@
+{
+  "Tasks": [
+    {
+      "TaskMethod": "Frends.Community.PaymentServices.OP.WebServices.DownloadFileList"
+    },
+    {
+      "TaskMethod": "Frends.Community.PaymentServices.OP.WebServices.UploadFile"
+    },
+    {
+      "TaskMethod": "Frends.Community.PaymentServices.OP.WebServices.DeleteFile"
+    },
+    {
+      "TaskMethod": "Frends.Community.PaymentServices.OP.WebServices.DownloadFile"
+    }
+  ]
+}
