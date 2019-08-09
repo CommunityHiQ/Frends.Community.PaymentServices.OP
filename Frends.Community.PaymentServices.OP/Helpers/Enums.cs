@@ -1,4 +1,6 @@
-﻿namespace Frends.Community.PaymentServices.OP.Helpers
+﻿#pragma warning disable 1591
+
+namespace Frends.Community.PaymentServices.OP.Helpers
 {
     public class Enums
     {

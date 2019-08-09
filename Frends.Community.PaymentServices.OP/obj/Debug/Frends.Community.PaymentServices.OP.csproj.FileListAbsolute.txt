@@ -1,9 +1,0 @@
-C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Debug\Frends.Community.PaymentServices.OP.xml
-C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Debug\Frends.Community.PaymentServices.OP.dll
-C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Debug\Frends.Community.PaymentServices.OP.pdb
-C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Debug\Frends.Community.PaymentServices.OP.dll.CodeAnalysisLog.xml
-C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\bin\Debug\Frends.Community.PaymentServices.OP.dll.lastcodeanalysissucceeded
-C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Debug\Frends.Community.PaymentServices.OP.csprojAssemblyReference.cache
-C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Debug\Frends.Community.PaymentServices.OP.csproj.CoreCompileInputs.cache
-C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Debug\Frends.Community.PaymentServices.OP.dll
-C:\Users\ruusuka\Documents\Frends.Community taskit\Frends.Community.PaymentServices.OP\Frends.Community.PaymentServices.OP\obj\Debug\Frends.Community.PaymentServices.OP.pdb

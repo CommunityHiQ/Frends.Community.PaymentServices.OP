@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
+#pragma warning disable 1591
+
 namespace Frends.Community.PaymentServices.OP.Definitions
 {
     public class FileListInput
@@ -10,11 +12,11 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         /// </summary>
         [Required]
         [DisplayFormat(DataFormatString = "Text")]
-        [DefaultValue("https://wsk.asiakastesti.op.fi/services/CorporateFileService")]
+        [DefaultValue(@"https://wsk.asiakastesti.op.fi/services/CorporateFileService")]
         public string Url { get; set; }
 
         /// <summary>
-        /// The issuer of the X509Certificate2 certificate object to used for signing web service calls. First matching certificate is used.
+        /// The issuer of the Base-64 encoded X.509 certificate to be used for signing web service calls. First matching certificate is used.
         /// An Exception is thrown if a certificate is not found or it has already expired.
         /// </summary>
         [Required]
@@ -69,10 +71,10 @@ namespace Frends.Community.PaymentServices.OP.Definitions
         public string EndDate { get; set; }
 
         /// <summary>
-        /// Optional parameter Status can be used to filter filelist.
-        /// Valid values for files sent to hte bank by the customer are "WFP" or "FWD" (WFP = waiting for processing. FWD = forwarded).
-        /// Valid values for files sent to hte bank by the customer are "NEW" or "DLD" (NEW = files not downloaded yet. DLD = files already downloaded).
-        /// If no parameter is given or if the status is "ALL", all files will be listed.
+        /// Optional parameter for filtering filelist. 
+        /// Valid values for files sent to the bank are "WFP" (waiting for processing) or "FWD" (forwarded).
+        /// Valid values for files provided by the bank are "NEW" (not yet downloaded) or "DLD" (already downloaded).
+        /// Parameter "ALL" fetches all available files. If no parameter is given, "ALL" will be used.
         /// </summary>
         [DisplayFormat(DataFormatString = "Text")]
         [DefaultValue("\"ALL\"")]

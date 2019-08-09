@@ -97,7 +97,7 @@ namespace Frends.Community.PaymentServices.OP
         }
 
         /// <summary>
-        /// Deletes a file from web service.
+        /// Deletes a file from OP. Can be used for example to cancel a file upload, but only if the file has not been processed yet. 
         /// In case of an error an exception is thrown.
         /// </summary>
         /// <returns>Returns an empty string</returns>
