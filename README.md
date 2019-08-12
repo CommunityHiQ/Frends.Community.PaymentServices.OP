@@ -76,7 +76,7 @@ Downloads a file from OP. This operation requires a file reference value that is
 
 | Property             | Type                 | Description                          | Example |
 | ---------------------| ---------------------| ------------------------------------ | ----- |
-| Url | string | URL of the bank's web service. | http://filetransfer.test.nordea.com/services/CorporateFileService |
+| Url | string | URL of the bank's web service. | https://wsk.asiakastesti.op.fi |
 | Certificate Issued By | string | The issuer of the Base-64 encoded X.509 certificate that should be used for signing the messages. |  |
 | Environment | string | Target environment (TEST or PRODUCTION). | TEST |
 | Customer Id | string | Unique number identifying the bank's customer. | 0000000000 |
@@ -142,7 +142,7 @@ Testing and using the tasks requires a working connection to OP's Web Service. I
 - A client specific certificate. Test and production environments require their own certificates. Instructions on obtaining a certificate can be found from OP's web page. The certificate should be installed under Personal/Certificates in the FRENDS agent's certificate store.
 - The following Entrust CA certificates: Entrust Root Certificate Authority - G2, Entrust Certificate Authority - L1K (Non-EV SSL)  
 
-When the certificate is obtained and installed, and the needed ID values are known, the connection to Nordea's web service can be tested with either task GetUserInfo or DownloadFileList, as these only fetch information and do not modify anything at Nordea's end. Assuming there is some material to test with, DownLoadFile and UploadFile can be tested as soon as the connection to the web service works.
+When the certificate is obtained and installed, and the needed ID values are known, the connection to OP's web service can be tested with the task DownloadFileList, as it only fetches information and does not modify anything at OP's end (except for the file status from NEW to DLD). Assuming there is some material to test with, DownLoadFile and UploadFile can be tested as soon as the connection to the web service works.
 
 When testing - and especially when testing UploadFile - care should be taken that the environment parameter is TEST, as there is no separate test environment for the web service. If, for example, test material is uploaded with environment parameter PRODUCTION, the material will be processed in production. 
 
