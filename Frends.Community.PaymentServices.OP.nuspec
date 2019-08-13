@@ -23,8 +23,8 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="\Frends.Community.PaymentServices.OP\bin\release\Frends.Community.PaymentServices.OP.dll" target="lib\net452\Frends.Community.PaymentServices.OP.dll" />
-    <file src="\Frends.Community.PaymentServices.OP\bin\release\Frends.Community.PaymentServices.OP.xml" target="lib\net452\Frends.Community.PaymentServices.OP.xml" />
+    <file src="Frends.Community.PaymentServices.OP\bin\release\Frends.Community.PaymentServices.OP.dll" target="lib\net452\Frends.Community.PaymentServices.OP.dll" />
+    <file src="Frends.Community.PaymentServices.OP\bin\release\Frends.Community.PaymentServices.OP.xml" target="lib\net452\Frends.Community.PaymentServices.OP.xml" />
     <file src="FrendsTaskMetadata.json" target="FrendsTaskMetadata.json"/>
   </files>
 </package>
