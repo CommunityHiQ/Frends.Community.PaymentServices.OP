@@ -146,6 +146,8 @@ When the certificate is obtained and installed, and the needed ID values are kno
 
 When testing - and especially when testing UploadFile - care should be taken that the environment parameter is TEST, as there is no separate test environment for the web service. If, for example, test material is uploaded with environment parameter PRODUCTION, the material will be processed in production. 
 
+This task uses OP's implementation of [Web Services channel](http://www.finanssiala.fi/maksujenvalitys/dokumentit/WebServices_Messages_20081022_105.pdf). Details of OP implementation can be found [here](https://www.op.fi/yritykset/tietoa-ohjelmistotoimittajille/ladattavat-asiakasohjeet). These documents are also backed up in Documents folder.
+
 
 # Contributing
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
