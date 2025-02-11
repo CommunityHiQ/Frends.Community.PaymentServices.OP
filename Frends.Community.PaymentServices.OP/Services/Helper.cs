@@ -251,7 +251,7 @@ namespace Frends.Community.PaymentServices.OP.Services
         //Builds signature XML element
         private static XmlElement GetSignatureNode(XmlDocument document, X509Certificate2 certificate, IList<string> referenceIds, KeyInfo keyInfo)
         {
-            var signedXmlA = new SignedXmlWithId(document) { SigningKey = certificate.PrivateKey };
+            var signedXmlA = new SignedXmlWithId(document) { SigningKey = certificate.GetRSAPrivateKey() };
 
             if (referenceIds.Any())
             {
