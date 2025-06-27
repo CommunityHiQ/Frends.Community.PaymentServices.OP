@@ -151,8 +151,8 @@ namespace Frends.Community.PaymentServices.OP.Services
             // Should this use a proxy?
 
             //Allow all endpoint types
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 |
-                                                   SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
+
         }
     }
 }

@@ -167,3 +167,4 @@ NOTE: Be sure to merge the latest from "upstream" before making a pull request!
 | 1.0.0 | Initial version of tasks |
 | 1.0.1 | Changed return type of tasks |
 | 1.1.0 | A few minor fixes to code and updated documentation | 
+| 1.2.2 | Removed support for ssl3.0. Modernized to 4.7.1, .netstandard2.0, .NET6, .NET8 |
